@@ -1,0 +1,149 @@
+
+
+/* Admin css  */
+
+:root{
+    --primary: #00A15D;
+    --secondary: #FF5E4B;
+    --primary-light: #00d47a;
+    --primary-hover: #006e40;
+    --primary-dark: #006e40; 
+}
+.text-primary {
+    color: var(--primary) !important;
+}
+/* project view  */
+.project-date{
+    font-size: 0.875rem;
+    font-family: 'poppins', sans-serif;
+    word-wrap: break-word;
+    --bs-gutter-x: 30px;
+    --bs-gutter-y: 0;
+    box-sizing: border-box;
+    outline: none;
+    padding: 0;
+    width: 160px;
+   
+
+}
+.project-date > i{
+    outline: none;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-weight: 400;
+    font-family: "Font Awesome 5 Free";
+    margin-top: 0.5rem !important;
+    margin-right: 1rem !important;
+    color: var(--primary) !important;
+    display: inline-block;
+}
+.project-date > h4 {
+    box-sizing: border-box;
+    outline: none;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem !important;
+    line-height: 1.5;
+    font-weight: 500;
+    color: #000 !important;
+}
+
+.project-banner{
+    width: 100%;
+    height:300px;
+    border-radius: 10px;
+}
+
+.project-date-container{
+    width: 168px;
+}
+
+
+
+/* project views  */
+
+.project-left {
+    width: 100%;
+    padding: 10px 60px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+}
+
+form.chat-content-bottom.d-flex {
+    border: 1px solid gray;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.chat-section{
+    height: 68vh;
+    overflow-y: scroll;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 10px 20px;
+    scroll-behavior: smooth;
+}
+
+.uploadbtn{
+    position: relative;
+    overflow: hidden;
+    display: inline-flex; 
+    gap: 0.6em;
+    align-items: center; 
+    padding: 0.5em 1em; 
+    border: 1px solid #ccc; 
+    background-color: #f9f9f9; 
+    cursor: pointer; 
+    font-family: inherit; 
+    white-space: nowrap; 
+}
+.uploadbtn i{
+    color: var(--primary);
+}
+.uploadbtn input[type='file']{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(5);
+    opacity: 0;
+}
+
+.send-btn{
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.chat-content-body{
+ /* overflow-y: scroll; */
+}
+.chat-content-body .content{
+    overflow: scroll;
+    scroll-behavior: smooth;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
