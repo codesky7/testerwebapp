@@ -17,11 +17,12 @@ return new class extends Migration
             $table->string('lname');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
+            $table->longText('profile_pic')->default('images/profile/profile.png');
             $table->string('website')->nullable();
             $table->date('dob')->nullable();
             $table->text('about')->nullable();
             $table->string('country')->nullable();
-            $table->string('language')->nullable();
+            $table->string('language')->default('en');
             $table->string('user_type')->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

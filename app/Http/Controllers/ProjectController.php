@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProjectRequest;
 use App\Models\Projects;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -22,8 +23,10 @@ class ProjectController extends Controller
     
     public function newproject()
     {
+        $clientlist = User::where('user_type' ,0)->get();
+        $testertlist = User::where('user_type' ,2)->get();
        
-        return view('admin.pages.newproject');
+        return view('admin.pages.newproject', compact('clientlist', 'testertlist'));
     }
     
 

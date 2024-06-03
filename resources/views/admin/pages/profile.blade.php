@@ -6,18 +6,33 @@
 <div class="page-inner pd-0-force">
     <div class="bg-white mg-b-30">
        <div class="media col-md-10 col-lg-8 col-xl-7 pd-30 mx-auto">
-          <img src="/assets//images/users-face/1.png" alt="" class="d-block rounded-circle hidden-xs">
+     <div class="profile-image">
+      <form action="" >
+         <input type="file" name="profile_img" class="get-image">
+         <img src="{{ asset('storage/' . $loggedUser->profile_pic) }}" alt="" class="d-block rounded-circle hidden-xs wd-150 ht-150">
+         <i class="fa-solid fa-camera profile-camera"></i>
+      </form>
+     </div>
+          
           <div class="media-body ml-0 ml-md-5">
              <h4 class="tx-semibold"><!-- In any Blade view -->
                @if($loggedUser)
                    <p>{{ $loggedUser->fname . " " . $loggedUser->lname }}</p>
+                   @if ($loggedUser->user_type == 1)
+                   <small class="badge badge-pill badge-success ">Admin</small>
+                   @elseif ($loggedUser->user_type == 2)
+                   <span class="badge badge-pill badge-success">Tester</span>
+                   @elseif ($loggedUser->user_type == 3)
+                   <span class="badge badge-pill badge-success">Client</span>
+                   @endif
+                   
                @endif
                </h4>
              <p class="tx-gray-500"> {{ $user_detail->about }} <a href="">Read more</a>
              </p>
              <div class="d-flex mg-b-25">
                 <button class="btn btn-default">Message</button>
-                <button class="btn btn-primary mg-l-10">Follow</button>
+                {{-- <button class="btn btn-primary mg-l-10">Follow</button> --}}
              </div>
              <a href="" class="d-inline-block ">
              <strong>2,574</strong>
@@ -51,70 +66,57 @@
        </div>
       <div class="modal-body">
          <div class="card-body">
-            <form action="" method="POST" class="form-layout form-layout-1">
+            <form action="{{route('update.profile',$user_detail->id)}}" method="POST" class="form-layout form-layout-1" enctype="multipart/form-data">
+               @csrf
+               @method('PUT')
                <div class="row mg-b-25">
                   <div class="col-lg-12">
                      <div class="form-group">
                         <label class="form-control-label active">Profile Picture <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="file" name="profile_pic"  placeholder="Enter firstname">
+                        <input class="form-control" type="file" name="profile_pic" >
                      </div>
                   </div>
                   <div class="col-lg-12">
                      <div class="form-group">
                         <label class="form-control-label active">Firstname: <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="text" name="firstname" value="John Paul" placeholder="Enter firstname">
+                        <input class="form-control" type="text" name="fname" value="{{$loggedUser->fname}}" placeholder="Enter firstname">
                      </div>
                   </div>
                   <!-- col-4 -->
                   <div class="col-lg-12">
                      <div class="form-group">
                         <label class="form-control-label active">Lastname: <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="text" name="lastname" value="McDoe" placeholder="Enter lastname">
+                        <input class="form-control" type="text" name="lname" value="{{$loggedUser->lname}}" placeholder="Enter lastname">
                      </div>
                   </div>
                   <!-- col-4 -->
                   <div class="col-lg-12">
                      <div class="form-group">
                         <label class="form-control-label active">Email address: <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="text" name="email" value="johnpaul@yourdomain.com" placeholder="Enter email address">
+                        <input class="form-control" type="text" name="email" value="{{$loggedUser->email}}" placeholder="Enter email address">
                      </div>
                   </div>
                   <!-- col-4 -->
+
                   <div class="col-lg-12">
-                     <div class="form-group mg-b-10-force">
-                        <label class="form-control-label active">Mail Address: <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="text" name="address" value="Market St. San Francisco" placeholder="Enter address">
+                     <div class="form-group">
+                        <label class="form-control-label active">Phone: <span class="tx-danger">*</span></label>
+                        <input class="form-control" type="text" name="phone" value="{{$loggedUser->phone}}" placeholder="Enter phone number">
                      </div>
                   </div>
-
-                                    <!-- col-4 -->
-                                    <div class="col-lg-12">
-                                       <div class="form-group mg-b-10-force">
-                                          <label class="form-control-label active">Mail Address: <span class="tx-danger">*</span></label>
-                                          <div class="clearfix">
-                                             <input type="text" class="form-control hasDatepicker" placeholder="Choose date" id="datepicker4">
-                                          </div>
-                                       </div>
-                                    </div>
-
-                  <!-- col-8 -->
-                  <div class="col-lg-12">
+                   <!-- col-4 -->
+                   <div class="col-lg-12">
                      <div class="form-group mg-b-10-force">
-                        <label class="form-control-label">Country: <span class="tx-danger">*</span></label>
-                        <select class="form-control select2 select2-hidden-accessible" data-placeholder="Choose country" tabindex="-1" aria-hidden="true">
-                           <option label="Choose country"></option>
-                           <option value="USA">United States of America</option>
-                           <option value="UK">United Kingdom</option>
-                           <option value="China">China</option>
-                           <option value="Japan">Japan</option>
-                        </select>
+                        <label class="form-control-label active">Country: <span class="tx-danger">*</span></label>
+                        <input class="form-control" type="text" name="country" value="{{$loggedUser->country}}" placeholder="Enter address">
                      </div>
                   </div>
-                  <!-- col-4 -->
                </div>
+
+               
                <!-- row -->
                <div class="form-layout-footer">
-                  <button class="btn btn-primary">Submit Form</button>
+                  <button type="submit" class="btn btn-primary">Update Profile</button>
                   <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                </div>
                <!-- form-layout-footer -->
@@ -167,42 +169,17 @@
                    <div class="col-md-3 tx-gray-500 tx-semibold">Email:</div>
                    <div class="col-md-9">{{ $loggedUser->email }}</div>
                 </div>
-                <div class="row mb-2">
-                   <div class="col-md-3 tx-gray-500 tx-semibold">Website:</div>
-                   <div class="col-md-9">http://yourdomain.com</div>
-                </div>
+
                 <div class="row mb-2">
                    <div class="col-md-3 tx-gray-500 tx-semibold">Phone:</div>
                    <div class="col-md-9"> {{ $user_detail->phone }}</div>
                 </div>
                 <div class="row mb-2">
                    <div class="col-md-3 tx-gray-500 tx-semibold">Address:</div>
-                   <div class="col-md-9">  </div>
+                   <div class="col-md-9"> {{ $user_detail->address }} </div>
                 </div>
-                <h6 class="my-3">Interests</h6>
-                <div class="row mb-2">
-                   <div class="col-md-3 tx-gray-500 tx-semibold">Favorite music:</div>
-                   <div class="col-md-9">
-                      <a href="" >Rock</a>,
-                      <a href="" >Alternative</a>,
-                      <a href="" >Electro</a>,
-                      <a href="" >Drum &amp; Bass</a>,
-                      <a href="" >Dance</a>
-                   </div>
-                </div>
-                <div class="row">
-                   <div class="col-md-3 tx-gray-500 tx-semibold">Favorite movies:</div>
-                   <div class="col-md-9">
-                      <a href="" >The Green Mile</a>,
-                      <a href="" >Pulp Fiction</a>,
-                      <a href="" >Back to the Future</a>,
-                      <a href="" >WALL E</a>,
-                      <a href="" >Django Unchained</a>,
-                      <a href="" >The Truman Show</a>,
-                      <a href="" >Home Alone</a>,
-                      <a href="" >Seven Pounds</a>
-                   </div>
-                </div>
+               
+          
              </div>
              <div class="card-footer text-center p-0">
                 <div class="row no-gutters row-bordered row-border-light">
@@ -222,7 +199,7 @@
              </div>
           </div>
           <!-- / Info -->
-          <div class="card mg-b-30">
+          {{-- <div class="card mg-b-30">
              <div class="card-header d-flex align-items-center justify-content-between">
                 <h6 class="tx-16 tx-semibold mg-b-0">Work Experience</h6>
              </div>
@@ -304,11 +281,11 @@
                 </nav>
              </div>
              <!-- card-footer -->
-          </div>
+          </div> --}}
        </div>
        <div class="col-xl-4">
           <!-- Skills -->
-          <div class="card mg-b-30">
+          {{-- <div class="card mg-b-30">
              <div class="card-header tx-16 tx-semibold">Skills</div>
              <div class="card-body">
                 <div class="mb-1">HTML - <small >80%</small></div>
@@ -334,7 +311,7 @@
           <!-- Friends -->
           <div class="card mg-b-30">
              <div class="card-header with-elements d-flex justify-content-between">
-                <span class="tx-16 tx-semibold">Friends <small class="tx-gray-500">(591)</small></span>
+                <span class="tx-16 tx-semibold">Testers <small class="tx-gray-500">(591)</small></span>
                 <div><a href="" class="text-body small tx-semibold tx-uppercase">Show All</a></div>
              </div>
              <div class="card-body">
@@ -386,118 +363,9 @@
                    </li>
                 </ul>
              </div>
-          </div>
-          <!-- / Friends -->
-          <!-- Followers -->
-          <div class="card mg-b-30">
-             <div class="card-header with-elements d-flex justify-content-between">
-                <span class="tx-16 tx-semibold">Followers <small class="tx-gray-500">(124)</small></span>
-                <div><a href="" class="text-body small tx-semibold tx-uppercase">Show All</a></div>
-             </div>
-             <div class="card-body">
-                <ul class="list-unstyled">
-                   <li class="d-flex align-items-center mg-b-15">
-                      <a href="">
-                         <div class="avatar avatar-online"><span class="avatar-initial rounded-circle bg-gray-600">A</span><i></i></div>
-                      </a>
-                      <div class="media-body pd-l-15 lh-2">
-                         <p class="tx-medium mg-b-2"><a href="">Archie Cantones</a></p>
-                         <span class="tx-12 tx-gray-500">Senior Software Architect</span>
-                      </div>
-                      <a href="#" class="btn btn-success ml-auto">Following</a>
-                   </li>
-                   <li class="d-flex align-items-center mg-b-15">
-                      <a href="">
-                         <div class="avatar avatar-online"><span class="avatar-initial rounded-circle bg-primary">H</span><i></i></div>
-                      </a>
-                      <div class="media-body pd-l-15 lh-2">
-                         <p class="tx-medium mg-b-2"><a href="">Holmes Cherryman</a></p>
-                         <span class="tx-12 tx-gray-500">Human resources</span>
-                      </div>
-                      <a href="#" class="btn btn-success ml-auto">Following</a>
-                   </li>
-                   <li class="d-flex align-items-center mg-b-15">
-                      <a href="">
-                         <div class="avatar avatar-online"><span class="avatar-initial rounded-circle bg-danger">M</span><i></i></div>
-                      </a>
-                      <div class="media-body pd-l-15 lh-2">
-                         <p class="tx-medium mg-b-2"><a href="">Malanie Hanvey</a></p>
-                         <span class="tx-12 tx-gray-500">Real estate agent</span>
-                      </div>
-                      <a href="#" class="btn btn-default ml-auto">Follow</a>
-                   </li>
-                   <li class="d-flex align-items-center mg-b-15">
-                      <a href="">
-                         <div class="avatar avatar-online"><span class="avatar-initial rounded-circle bg-teal">K</span><i></i></div>
-                      </a>
-                      <div class="media-body pd-l-15 lh-2">
-                         <p class="tx-medium mg-b-2"><a href="">Kenneth Hune</a></p>
-                         <span class="tx-12 tx-gray-500">Engineer</span>
-                      </div>
-                      <a href="#" class="btn btn-success ml-auto">Following</a>
-                   </li>
-                   <li class="d-flex align-items-center mg-b-15">
-                      <a href="">
-                         <div class="avatar avatar-online"><span class="avatar-initial rounded-circle bg-success">V</span><i></i></div>
-                      </a>
-                      <div class="media-body pd-l-15 lh-2">
-                         <p class="tx-medium mg-b-2"><a href="">Valentine Maton</a></p>
-                         <span class="tx-12 tx-gray-500">Engineer</span>
-                      </div>
-                      <a href="#" class="btn btn-success btn-sm ml-auto">Following</a>
-                   </li>
-                </ul>
-             </div>
-          </div>
-          <!-- / Photos -->
-          <!-- Photos -->
-          <div class="card mg-b-30">
-             <div class="card-header with-elements d-flex justify-content-between">
-                <span class="tx-16 tx-semibold">Photos <small class="tx-gray-500">(245)</small></span>
-                <div><a href="" class="text-body small tx-semibold tx-uppercase">Show All</a></div>
-             </div>
-             <div class="card-body">
-                <div class="row no-gutters">
-                   <div class="col-4">
-                      <a href="" class="d-block ht-100"><img src="/assets//images/gallery/1.jpg" class="img-fit-cover" alt=""></a>
-                   </div>
-                   <!-- col -->
-                   <div class="col-4">
-                      <a href="" class="d-block ht-100"><img src="/assets//images/gallery/2.jpg" class="img-fit-cover" alt=""></a>
-                   </div>
-                   <!-- col -->
-                   <div class="col-4">
-                      <a href="" class="d-block ht-100"><img src="/assets//images/gallery/3.jpg" class="img-fit-cover" alt=""></a>
-                   </div>
-                   <!-- col -->
-                   <div class="col-4">
-                      <a href="" class="d-block ht-100"><img src="/assets//images/gallery/4.jpg" class="img-fit-cover" alt=""></a>
-                   </div>
-                   <!-- col -->
-                   <div class="col-4">
-                      <a href="" class="d-block ht-100"><img src="/assets//images/gallery/5.jpg" class="img-fit-cover" alt=""></a>
-                   </div>
-                   <!-- col -->
-                   <div class="col-4">
-                      <a href="" class="d-block ht-100"><img src="/assets//images/gallery/6.jpg" class="img-fit-cover" alt=""></a>
-                   </div>
-                   <!-- col -->
-                   <div class="col-4">
-                      <a href="" class="d-block ht-100"><img src="/assets//images/gallery/7.jpg" class="img-fit-cover" alt=""></a>
-                   </div>
-                   <!-- col -->
-                   <div class="col-4">
-                      <a href="" class="d-block ht-100"><img src="/assets//images/gallery/8.jpg" class="img-fit-cover" alt=""></a>
-                   </div>
-                   <!-- col -->
-                   <div class="col-4">
-                      <a href="" class="d-block ht-100"><img src="/assets//images/gallery/9.jpg" class="img-fit-cover" alt=""></a>
-                   </div>
-                   <!-- col -->
-                </div>
-             </div>
-          </div>
-          <!-- / Photos -->
+          </div> --}}
+
+  
        </div>
     </div>
  </div>

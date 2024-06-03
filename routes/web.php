@@ -43,6 +43,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function()
     Route::get('/dashboard', [AdminDashboardController::class, 'showdashboard'])->name('admin.dashboard');
     Route::get('/sign-out', [AuthController::class, 'adminlogout'] )->name('adminlogout');
     Route::get('/profile', [AdminDashboardController::class, 'adminprofile'])->name('admin.profile');
+    Route::put('/profile/edit/{profileId}', [AdminDashboardController::class,'UpdateProfile'])->name('update.profile');
     Route::get('/projects', [ProjectController::class, 'adminproject'])->name('admin.projects');
     Route::get('/project/{id}', [ProjectController::class, 'showproject'])->name('admin.project');
     Route::get('/new-project', [ProjectController::class, 'newproject'])->name('admin.newproject');
@@ -56,6 +57,7 @@ Route::group(['prefix' => 'client', 'middleware' => 'client'], function()
     Route::get('/dashboard', [ClientDashboardController::class, 'showdashboard'])->name('client.dashboard');
     Route::get('/sign-out', [AuthController::class, 'adminlogout'] )->name('clientlogout');
     Route::get('/profile', [ClientProfileController::class, 'clientprofile'])->name('client.profile');
+    // Route::get('/profile/update', [AdminDashboardController::class,'UpdateProfile'])->name('update.profile');
     Route::get('/projects', [ClientProjectController::class, 'clientproject'])->name('client.projects');
     Route::get('/project/{id}', [ProjectController::class, 'showproject'])->name('client.project');
 });

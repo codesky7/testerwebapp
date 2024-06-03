@@ -21,9 +21,6 @@
     <link rel="stylesheet" href="{{asset('assets/plugins/summernote/summernote.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/dropzone/dropzone.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/css/multi-select-tag.css">
-    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
-    <link type="text/css" rel="stylesheet" href="/assets/plugins/perfect-scrollbar/perfect-scrollbar.css"/>
-    @yield('css')
     
 
 
@@ -156,9 +153,7 @@
     <script src="{{asset('assets/plugins/summernote/summernote.min.js')}}"></script>
     <script src="{{asset('assets/plugins/dropzone.js/dropzone.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script>
-    <script src="asset('assets/plugins/photoswipe/photoswipe.js')"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
 
     <!-- Custom Script -->
     <script>
@@ -321,32 +316,7 @@ $('#price-input').formatter({
            'pattern': '$ {{9999}}.{{99}}',
            'persistent': true
          });
-
-
-         $(function() {
-    initPhotoSwipeFromDOM('#screenshot');
-  });
-
-
-
-
-  $(function(){
-           'use strict'  
          
-           // chat sidebar body scrollbar
-           new PerfectScrollbar('.sidebar-body', {
-             suppressScrollX: true
-           });
-         
-           // chat content body scrollbar
-           new PerfectScrollbar('.chat-content-body', {
-             suppressScrollX: true
-           });        
-           
-         })         	  
-
     </script>
-
-@yield('js')
 </body>
 </html>

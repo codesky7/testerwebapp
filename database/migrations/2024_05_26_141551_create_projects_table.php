@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('start_date')->nullable();
             $table->string('deadline')->nullable();
             $table->longText('notes')->nullable();
-            $table->unsignedInteger('category_id')->nullable()->index();
+            $table->unsignedInteger('department')->nullable();
             $table->unsignedInteger('client_id')->nullable()->index();
             $table->unsignedInteger('team_id')->nullable()->index();
             $table->mediumText('feedback')->nullable();

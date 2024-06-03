@@ -23,13 +23,13 @@
           <div class="col-lg-5">
              <div class="form-group">
                 <label class="form-control-label active">Project Code : <span class="tx-danger">*</span></label>
-                <input class="form-control" type="text" name="project_code" value="McDoe" placeholder="Enter lastname">
+                <input class="form-control" type="text" name="project_code" value="" placeholder="Enter lastname">
              </div>
           </div>
           <div class="col-lg-7">
              <div class="form-group">
                 <label class="form-control-label active">Project Name : <span class="tx-danger">*</span></label>
-                <input class="form-control" type="text" name="project_name" value="John Paul" placeholder="Enter firstname">
+                <input class="form-control" type="text" name="project_name" value="" placeholder="Enter firstname">
              </div>
           </div>
           <!-- col-4 -->
@@ -37,14 +37,14 @@
           <div class="col-lg-5">
              <div class="form-group">
                 <label class="form-control-label active">Email address: <span class="tx-danger">*</span></label>
-                <input class="form-control" type="text" name="email" value="johnpaul@yourdomain.com" placeholder="Enter email address">
+                <input class="form-control" type="text" name="email" value="" placeholder="Enter email address">
              </div>
           </div>
           <!-- col-4 -->
           <div class="col-lg-5">
              <div class="form-group mg-b-10-force">
                 <label class="form-control-label active"> Address: <span class="tx-danger"></span></label>
-                <input class="form-control" type="text" name="address" value="Market St. San Francisco" placeholder="Enter address">
+                <input class="form-control" type="text" name="address" value="" placeholder="Enter address">
              </div>
           </div>
 
@@ -68,9 +68,8 @@
                 <label class="form-control-label">Department: <span class="tx-danger">*</span></label>
                 <select class="form-control select2 select2-hidden-accessible" data-placeholder="Choose Department" tabindex="-1" aria-hidden="true">
                    <option label="Select Department"></option>
-                   <option value="UK">United Kingdom</option>
-                   <option value="China">China</option>
-                   <option value="Japan">Japan</option>
+                   <option value="App Testing">App Testing</option>
+                  
                 </select>
              </div>
           </div>
@@ -79,10 +78,10 @@
             <div class="form-group mg-t-10-force">
                <label class="form-control-label">Client: <span class="tx-danger">*</span></label>
                <select class="selectpicker form-control select2 select2-hidden-accessible" data-style="btn-default" data-live-search="true" name="client_id">
-                  <option value="" selected>Select Client</option>
-                  <option data-tokens="ketchup mustard" value="1">Hot Dog, Fries and a Soda</option>
-                  <option data-tokens="mustard" value="1">>Burger, Shake and a Smile</option>
-                  <option data-tokens="frosting" value="1">>Sugar, Spice and all things nice</option>
+                  <option value="" selected>Select Client</option>        
+                  @foreach ($clientlist as $client)
+                  <option  value="{{$client->id}}">{{$client->fname .' '. $client->lname}}</option>
+                  @endforeach
                 </select>
             </div>
          </div>
@@ -118,11 +117,11 @@
         <div class="col-lg-5 mg-t-10-force">
          <label class="form-control-label">Add Project Members : <span class="tx-danger">*</span></label>
          <select name="countries" id="staff"  multiple placeholder="helll" name="team_id">
-            <option value="1" >Afghanistan</option>
-            <option value="2">Australia</option>
-            <option value="3">Germany</option>
-            <option value="4">Canada</option>
-            <option value="5">Russia</option>
+      
+
+            @foreach ($testertlist as $tester )
+            <option value="{{$tester->id}}">{{$tester->fname .' '. $tester->lname}}</option>
+            @endforeach
         </select>
       </div>
       <div class="col-lg-5 mg-t-10-force">
@@ -144,4 +143,13 @@
 
  </div>
 
+@endsection
+@section('js')
+   <script>
+      $('.textarea').summernote({
+ placeholder: '',
+ tabsize: 2,
+ height: 70
+});
+   </script>
 @endsection

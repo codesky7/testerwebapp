@@ -303,13 +303,13 @@
             <!--================================-->
             <li class="list-inline-item dropdown">
                <a  href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               <img src="/assets/images/users-face/1.png" class="img-fluid wd-30 ht-30 rounded-circle" alt="">
+               <img src="{{asset('storage/' .$loggedUser->profile_pic)}}" class="img-fluid wd-30 ht-30 rounded-circle" alt="">
                </a>
                <div class="dropdown-menu dropdown-menu-right dropdown-profile">
                   <div class="user-profile-area">
                      <div class="user-profile-heading">
-                        <div class="profile-thumbnail">
-                           <img src="/assets/images/users-face/1.png" class="img-fluid wd-35 ht-35 rounded-circle" alt="">
+                        <div class="profile-thumbnail wd-35" >
+                           <img src="{{asset('storage/' .$loggedUser->profile_pic)}}" class="img-fluid wd-35 ht-35 rounded-circle" alt="">
                         </div>
                         <div class="profile-text">
                            <h6>  @if($loggedUser)
